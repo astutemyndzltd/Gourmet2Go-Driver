@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>676511496089-1onmbv8cl8kh5p2hu5cdfjq73qua3pol.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.676511496089-1onmbv8cl8kh5p2hu5cdfjq73qua3pol</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBpgL321XYEPjgZAaSS3dtclN-Bp9UbfNc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>676511496089</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.gourmet2go.driver</string>
+	<key>PROJECT_ID</key>
+	<string>gourmet2gogeorge</string>
+	<key>STORAGE_BUCKET</key>
+	<string>gourmet2gogeorge.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:676511496089:ios:685d17543dfd2bfa080508</string>
+	<key>DATABASE_URL</key>
+	<string>https://gourmet2gogeorge.firebaseio.com</string>
+</dict>
+</plist>
