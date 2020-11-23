@@ -28,7 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "address": MessageLookupByLibrary.simpleMessage("Address"),
         "address_not_provided_contact_client":
             MessageLookupByLibrary.simpleMessage(
-                "Address not provided contact client"),
+                "Address hasn'\t been provided. Contact client"),
         "address_not_provided_please_call_the_client":
             MessageLookupByLibrary.simpleMessage(
                 "Address not provided please call the client"),
@@ -65,22 +65,21 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Discover & Explorer"),
         "dismiss": MessageLookupByLibrary.simpleMessage("Dismiss"),
         "dont_have_any_item_in_the_notification_list":
-            MessageLookupByLibrary.simpleMessage(
-                "D\'ont have any item in the notification list"),
-        "dont_have_any_item_in_your_cart": MessageLookupByLibrary.simpleMessage(
-            "D\'ont have any item in your cart"),
+            MessageLookupByLibrary.simpleMessage("No new notifications"),
+        "dont_have_any_item_in_your_cart":
+            MessageLookupByLibrary.simpleMessage("Your cart is empty"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "email_address": MessageLookupByLibrary.simpleMessage("Email Address"),
         "email_to_reset_password":
-            MessageLookupByLibrary.simpleMessage("Email to reset password"),
+            MessageLookupByLibrary.simpleMessage("Reset Password"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
         "error_verify_email_settings": MessageLookupByLibrary.simpleMessage(
             "Error! Verify email settings"),
         "extras": MessageLookupByLibrary.simpleMessage("Extras"),
         "faq": MessageLookupByLibrary.simpleMessage("Faq"),
         "favorite_foods":
-            MessageLookupByLibrary.simpleMessage("Favorite Foods"),
+            MessageLookupByLibrary.simpleMessage("Favourite Foods"),
         "foods_ordered": MessageLookupByLibrary.simpleMessage("Foods Ordered"),
         "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
         "full_address": MessageLookupByLibrary.simpleMessage("Full Address"),
@@ -95,14 +94,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "home_address": MessageLookupByLibrary.simpleMessage("Home Address"),
         "i_dont_have_an_account":
-            MessageLookupByLibrary.simpleMessage("I don\'t have an account?"),
+            MessageLookupByLibrary.simpleMessage("Create Account"),
         "i_forgot_password":
-            MessageLookupByLibrary.simpleMessage("I forgot password ?"),
-        "i_have_account_back_to_login": MessageLookupByLibrary.simpleMessage(
-            "I have account? Back to login"),
+            MessageLookupByLibrary.simpleMessage("Forget Password?"),
+        "i_have_account_back_to_login":
+            MessageLookupByLibrary.simpleMessage("Return to Login"),
         "i_remember_my_password_return_to_login":
-            MessageLookupByLibrary.simpleMessage(
-                "I remember my password return to login"),
+            MessageLookupByLibrary.simpleMessage("Return to Login"),
         "items": MessageLookupByLibrary.simpleMessage("Items"),
         "john_doe": MessageLookupByLibrary.simpleMessage("John Doe"),
         "keep_your_old_meals_of_this_restaurant":
@@ -110,21 +108,20 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Keep your old meals of this restaurant"),
         "km": MessageLookupByLibrary.simpleMessage("Km"),
         "languages": MessageLookupByLibrary.simpleMessage("Languages"),
-        "lets_start_with_login":
-            MessageLookupByLibrary.simpleMessage("Let\'s Start with Login!"),
+        "lets_start_with_login": MessageLookupByLibrary.simpleMessage("Login"),
         "lets_start_with_register":
-            MessageLookupByLibrary.simpleMessage("Let\'s Start with register!"),
+            MessageLookupByLibrary.simpleMessage("Register"),
         "light_mode": MessageLookupByLibrary.simpleMessage("Light Mode"),
         "log_out": MessageLookupByLibrary.simpleMessage("Log out"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "long_press_to_edit_item_swipe_item_to_delete_it":
             MessageLookupByLibrary.simpleMessage(
-                "Long press to edit item, swipe item to delete it"),
+                "Long press to edit, swipe to delete"),
         "mi": MessageLookupByLibrary.simpleMessage("mi"),
         "new_address_added_successfully": MessageLookupByLibrary.simpleMessage(
             "New Address added successfully"),
         "new_order_from_costumer":
-            MessageLookupByLibrary.simpleMessage("New Order from costumer"),
+            MessageLookupByLibrary.simpleMessage("New Order from custumer"),
         "not_a_valid_address":
             MessageLookupByLibrary.simpleMessage("Not a valid address"),
         "not_a_valid_biography":
@@ -181,7 +178,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reset_cart": MessageLookupByLibrary.simpleMessage("Reset Cart?"),
         "reset_your_cart_and_order_meals_form_this_restaurant":
             MessageLookupByLibrary.simpleMessage(
-                "Reset your cart and order meals form this restaurant"),
+                "Reset your cart and order meals from this restaurant"),
         "restaurant_refreshed_successfuly":
             MessageLookupByLibrary.simpleMessage(
                 "Restaurant refreshed successfully"),
@@ -238,17 +235,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
         "would_you_please_confirm_if_you_have_delivered_all_meals":
             MessageLookupByLibrary.simpleMessage(
-                "Would you please confirm if you have delivered all meals to client"),
+                "Would you please confirm if you have delivered all meals to client?"),
         "wrong_email_or_password":
             MessageLookupByLibrary.simpleMessage("Wrong email or password"),
         "you_can_discover_restaurants": MessageLookupByLibrary.simpleMessage(
             "You can discover restaurants & fastfood arround you and choose you best meal after few minutes we prepare and delivere it for you"),
         "you_dont_have_any_order_assigned_to_you":
-            MessageLookupByLibrary.simpleMessage(
-                "You don\'t have any orders assigned to you!"),
+            MessageLookupByLibrary.simpleMessage("No new orders"),
         "you_must_add_foods_of_the_same_restaurants_choose_one":
             MessageLookupByLibrary.simpleMessage(
-                "You must add foods of the same restaurants choose one restaurants only!"),
+                "You must add foods of the same restaurants. Please choose one restaurants only!"),
         "your_address": MessageLookupByLibrary.simpleMessage("Your Address"),
         "your_biography":
             MessageLookupByLibrary.simpleMessage("Your biography"),

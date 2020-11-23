@@ -60,12 +60,13 @@ class SplashScreenState extends StateMVC<SplashScreen> {
               children: <Widget>[
                 Image.asset(
                   'assets/img/logo.png',
-                  width: 150,
+                  width: 250,
                   fit: BoxFit.cover,
                 ),
                 SizedBox(height: 50),
                 CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).hintColor),
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                      Theme.of(context).hintColor),
                 ),
               ],
             ),
