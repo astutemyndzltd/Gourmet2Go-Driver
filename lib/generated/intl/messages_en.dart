@@ -96,7 +96,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "i_dont_have_an_account":
             MessageLookupByLibrary.simpleMessage("Create Account"),
         "i_forgot_password":
-            MessageLookupByLibrary.simpleMessage("Forget Password?"),
+            MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "i_have_account_back_to_login":
             MessageLookupByLibrary.simpleMessage("Return to Login"),
         "i_remember_my_password_return_to_login":

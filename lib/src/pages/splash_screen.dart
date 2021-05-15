@@ -1,3 +1,4 @@
+import 'package:Gourmet2GoDriver/src/helpers/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
@@ -45,7 +46,7 @@ class SplashScreenState extends StateMVC<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false,
+      onWillPop: Helper.of(context).onWillPop,
       child: Scaffold(
         key: _con.scaffoldKey,
         body: Container(
@@ -60,7 +61,7 @@ class SplashScreenState extends StateMVC<SplashScreen> {
               children: <Widget>[
                 Image.asset(
                   'assets/img/logo.png',
-                  width: 250,
+                  width: 210,
                   fit: BoxFit.cover,
                 ),
                 SizedBox(height: 50),

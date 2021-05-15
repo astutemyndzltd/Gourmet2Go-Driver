@@ -1,3 +1,5 @@
+import 'package:Gourmet2GoDriver/src/models/order.dart';
+import 'package:Gourmet2GoDriver/src/repository/order_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
@@ -6,23 +8,30 @@ import '../models/notification.dart' as model;
 import '../repository/notification_repository.dart';
 
 class NotificationController extends ControllerMVC {
+
+  List<Order> orders = [];
   List<model.Notification> notifications = <model.Notification>[];
   int unReadNotificationsCount = 0;
   GlobalKey<ScaffoldState> scaffoldKey;
 
   NotificationController() {
     this.scaffoldKey = new GlobalKey<ScaffoldState>();
-    listenForNotifications();
+    //listenForNotifications();
+    listenForOrders();
+  }
+
+  void listenForOrders({String message}) async {
+    final Stream<Order> streamOfOrders = await getOrders();
+    streamOfOrders.listen((order) { orders.add(order); }, onDone: () {
+      setState(() => unReadNotificationsCount = orders.length);
+    });
   }
 
   void listenForNotifications({String message}) async {
     final Stream<model.Notification> stream = await getNotifications();
     stream.listen((model.Notification _notification) {
-      setState(() {
-        notifications.add(_notification);
-      });
+      setState(() { notifications.add(_notification); });
     }, onError: (a) {
-      print(a);
       scaffoldKey?.currentState?.showSnackBar(SnackBar(
         content: Text(S.of(context).verify_your_internet_connection),
       ));
@@ -41,9 +50,15 @@ class NotificationController extends ControllerMVC {
   }
 
   Future<void> refreshNotifications() async {
-    notifications.clear();
-    listenForNotifications(message: S.of(context).notifications_refreshed_successfuly);
+    orders.clear();
+    listenForOrders(message: S.of(context).notifications_refreshed_successfuly);
   }
+
+  refreshOrderCount() {
+    orders.clear();
+    listenForOrders();
+  }
+
 
   void doMarkAsReadNotifications(model.Notification _notification) async {
     markAsReadNotifications(_notification).then((value) {
@@ -82,4 +97,6 @@ class NotificationController extends ControllerMVC {
       ));
     });
   }
+
+
 }

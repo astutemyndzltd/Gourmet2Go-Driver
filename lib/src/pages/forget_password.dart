@@ -1,3 +1,5 @@
+import 'package:Gourmet2GoDriver/src/helpers/helper.dart';
+import 'package:Gourmet2GoDriver/src/repository/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
@@ -25,7 +27,7 @@ class _ForgetPasswordWidgetState extends StateMVC<ForgetPasswordWidget> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false,
+      onWillPop: Helper.of(context).onWillPop,
       child: Scaffold(
         key: _con.scaffoldKey,
         resizeToAvoidBottomPadding: false,
@@ -46,7 +48,7 @@ class _ForgetPasswordWidgetState extends StateMVC<ForgetPasswordWidget> {
                 width: config.App(context).appWidth(84),
                 height: config.App(context).appHeight(37),
                 child: Text(
-                  S.of(context).email_to_reset_password,
+                  'Email to reset password',
                   style: Theme.of(context).textTheme.headline2.merge(TextStyle(color: Theme.of(context).primaryColor)),
                 ),
               ),
@@ -75,7 +77,7 @@ class _ForgetPasswordWidgetState extends StateMVC<ForgetPasswordWidget> {
                       TextFormField(
                         keyboardType: TextInputType.emailAddress,
                         onSaved: (input) => _con.user.email = input,
-                        validator: (input) => !input.contains('@') ? S.of(context).should_be_a_valid_email : null,
+                        validator: (input) => !isValidEmail(input) ? 'Invalid email' : null,
                         decoration: InputDecoration(
                           labelText: S.of(context).email,
                           labelStyle: TextStyle(color: Theme.of(context).accentColor),

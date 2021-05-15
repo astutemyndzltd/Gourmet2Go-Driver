@@ -1,3 +1,4 @@
+import 'package:Gourmet2GoDriver/src/helpers/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -18,10 +19,7 @@ class PagesTestWidget extends StatefulWidget {
   Widget currentPage = OrdersWidget();
   final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  PagesTestWidget({
-    Key key,
-    this.currentTab,
-  }) {
+  PagesTestWidget({Key key, this.currentTab}) {
     if (currentTab != null) {
       if (currentTab is RouteArgument) {
         routeArgument = currentTab;
@@ -39,6 +37,7 @@ class PagesTestWidget extends StatefulWidget {
 }
 
 class _PagesTestWidgetState extends State<PagesTestWidget> {
+
   initState() {
     super.initState();
     _selectTab(widget.currentTab);
@@ -51,29 +50,36 @@ class _PagesTestWidgetState extends State<PagesTestWidget> {
   }
 
   void _selectTab(int tabItem) {
+
     setState(() {
-      widget.currentTab = tabItem == 3 ? 1 : tabItem;
+
+      widget.currentTab = tabItem;
+
       switch (tabItem) {
         case 0:
           widget.currentPage = ProfileWidget(parentScaffoldKey: widget.scaffoldKey);
           break;
+
         case 1:
           widget.currentPage = OrdersWidget(parentScaffoldKey: widget.scaffoldKey);
           break;
+
         case 2:
           widget.currentPage = OrdersHistoryWidget(parentScaffoldKey: widget.scaffoldKey);
           break;
+
         case 3:
-          widget.currentPage = MapWidget(parentScaffoldKey: widget.scaffoldKey, routeArgument: widget.routeArgument);
+          widget.currentPage = MapWidget(routeArgument: widget.routeArgument);
           break;
       }
+
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: onWillPop,
+      onWillPop: Helper.of(context).onWillPop,
       child: Scaffold(
         key: widget.scaffoldKey,
         drawer: DrawerWidget(),
@@ -88,34 +94,36 @@ class _PagesTestWidgetState extends State<PagesTestWidget> {
           backgroundColor: Colors.transparent,
           selectedIconTheme: IconThemeData(size: 28),
           unselectedItemColor: Theme.of(context).focusColor.withOpacity(1),
-          currentIndex: widget.currentTab,
+          currentIndex: widget.currentTab - 1,
           onTap: (int i) {
             print(i);
-            this._selectTab(i);
+            this._selectTab(i+1);
           },
           // this will be set when a new tab is tapped
           items: [
-            BottomNavigationBarItem(
+            /*BottomNavigationBarItem(
               icon: Icon(Icons.person_outline),
               title: new Container(height: 0.0),
-            ),
-            BottomNavigationBarItem(
-                title: new Container(height: 5.0),
-                icon: Container(
-                  width: 42,
-                  height: 42,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).accentColor,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(50),
-                    ),
-                    boxShadow: [
-                      BoxShadow(color: Theme.of(context).accentColor.withOpacity(0.4), blurRadius: 40, offset: Offset(0, 15)),
-                      BoxShadow(color: Theme.of(context).accentColor.withOpacity(0.4), blurRadius: 13, offset: Offset(0, 3))
-                    ],
+            ),*/
+            /*BottomNavigationBarItem(
+              title: new Container(height: 5.0),
+              icon: Container(
+                width: 42,
+                height: 42,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).accentColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(50),
                   ),
-                  child: new Icon(Icons.home, color: Theme.of(context).primaryColor),
-                )),
+                  boxShadow: [BoxShadow(color: Theme.of(context).accentColor.withOpacity(0.4), blurRadius: 40, offset: Offset(0, 15)), BoxShadow(color: Theme.of(context).accentColor.withOpacity(0.4), blurRadius: 13, offset: Offset(0, 3))],
+                ),
+                child: new Icon(Icons.home, color: Theme.of(context).primaryColor),
+              ),
+            ),*/
+            BottomNavigationBarItem(
+              icon: new Icon(Icons.shopping_bag),
+              title: new Container(height: 0.0),
+            ),
             BottomNavigationBarItem(
               icon: new Icon(Icons.history),
               title: new Container(height: 0.0),

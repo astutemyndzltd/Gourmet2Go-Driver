@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../generated/l10n.dart';
-import '../elements/ShoppingCartButtonWidget.dart';
+import '../elements/NotificationCountWidget.dart';
 import '../models/language.dart';
 import '../repository/settings_repository.dart' as settingRepo;
 
@@ -31,7 +31,7 @@ class _LanguagesWidgetState extends State<LanguagesWidget> {
           style: Theme.of(context).textTheme.headline6.merge(TextStyle(letterSpacing: 1.3)),
         ),
         actions: <Widget>[
-          new ShoppingCartButtonWidget(iconColor: Theme.of(context).hintColor, labelColor: Theme.of(context).accentColor),
+          new NotificationCountWidget(iconColor: Theme.of(context).hintColor, labelColor: Theme.of(context).accentColor),
         ],
       ),
       body: SingleChildScrollView(

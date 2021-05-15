@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:Gourmet2GoDriver/src/helpers/firebase_messaging_streams.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:global_configuration/global_configuration.dart';
@@ -16,7 +18,18 @@ import '../models/setting.dart';
 ValueNotifier<Setting> setting = new ValueNotifier(new Setting());
 ValueNotifier<Address> myAddress = new ValueNotifier(new Address());
 final navigatorKey = GlobalKey<NavigatorState>();
+final FirebaseMessagingStreams firebaseMessagingStreams = FirebaseMessagingStreams();
+final RouteObserver<PageRoute> routeObserver = new RouteObserver();
+final connectivity = new Connectivity();
+
+
 //LocationData locationData;
+
+Future<bool> isConnectedToInternet() async {
+  var connectivity = new Connectivity();
+  var result = await connectivity.checkConnectivity();
+  return result != ConnectivityResult.none;
+}
 
 Future<Setting> initSettings() async {
   Setting _setting;

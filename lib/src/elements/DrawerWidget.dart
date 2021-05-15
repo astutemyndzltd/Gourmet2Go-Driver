@@ -1,6 +1,6 @@
+import 'package:Gourmet2GoDriver/src/elements/AvatarWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
-
 import '../../generated/l10n.dart';
 import '../controllers/profile_controller.dart';
 import '../elements/CircularLoadingWidget.dart';
@@ -33,7 +33,7 @@ class _DrawerWidgetState extends StateMVC<DrawerWidget> {
               children: <Widget>[
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).pushNamed('/Pages', arguments: 0);
+                    //Navigator.of(context).pushNamed('/Pages', arguments: 0);
                   },
                   child: UserAccountsDrawerHeader(
                     decoration: BoxDecoration(
@@ -48,26 +48,27 @@ class _DrawerWidgetState extends StateMVC<DrawerWidget> {
                       currentUser.value.email,
                       style: Theme.of(context).textTheme.caption,
                     ),
-                    currentAccountPicture: CircleAvatar(
-                      backgroundColor: Theme.of(context).accentColor,
-                      backgroundImage: NetworkImage(currentUser.value.image.thumb),
-                    ),
+                    currentAccountPicture: AvatarWidget(dimension: 0, textFontSize: 30, onTap: () {
+                      //currentUser.value.apiToken != null ? Navigator.of(context).pushNamed('/Profile') : Navigator.of(context).pushNamed('/Login');
+                    },),
                   ),
                 ),
+                // current orders
                 ListTile(
                   onTap: () {
                     Navigator.of(context).pushNamed('/Pages', arguments: 1);
                   },
                   leading: Icon(
-                    Icons.fastfood,
+                    Icons.shopping_bag,
                     color: Theme.of(context).focusColor.withOpacity(1),
                   ),
                   title: Text(
-                    S.of(context).orders,
+                    'Current Orders',
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
                 ),
-                ListTile(
+                // notification
+                /*ListTile(
                   onTap: () {
                     Navigator.of(context).pushNamed('/Notifications');
                   },
@@ -79,7 +80,8 @@ class _DrawerWidgetState extends StateMVC<DrawerWidget> {
                     S.of(context).notifications,
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
-                ),
+                ),*/
+                // past orders
                 ListTile(
                   onTap: () {
                     Navigator.of(context).pushNamed('/Pages', arguments: 2);
@@ -89,10 +91,11 @@ class _DrawerWidgetState extends StateMVC<DrawerWidget> {
                     color: Theme.of(context).focusColor.withOpacity(1),
                   ),
                   title: Text(
-                    S.of(context).history,
+                    'Past Orders',
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
                 ),
+                // application preference
                 ListTile(
                   dense: true,
                   title: Text(
@@ -104,6 +107,7 @@ class _DrawerWidgetState extends StateMVC<DrawerWidget> {
                     color: Theme.of(context).focusColor.withOpacity(0.3),
                   ),
                 ),
+                // help
                 ListTile(
                   onTap: () {
                     Navigator.of(context).pushNamed('/Help');
@@ -117,6 +121,7 @@ class _DrawerWidgetState extends StateMVC<DrawerWidget> {
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
                 ),
+                // settings
                 ListTile(
                   onTap: () {
                     Navigator.of(context).pushNamed('/Settings');
@@ -130,7 +135,8 @@ class _DrawerWidgetState extends StateMVC<DrawerWidget> {
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
                 ),
-                ListTile(
+                // languages
+                /*ListTile(
                   onTap: () {
                     Navigator.of(context).pushNamed('/Languages');
                   },
@@ -142,7 +148,8 @@ class _DrawerWidgetState extends StateMVC<DrawerWidget> {
                     S.of(context).languages,
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
-                ),
+                ),*/
+                // dark mode
                 ListTile(
                   onTap: () {
                     if (Theme.of(context).brightness == Brightness.dark) {
@@ -163,6 +170,7 @@ class _DrawerWidgetState extends StateMVC<DrawerWidget> {
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
                 ),
+                // log out
                 ListTile(
                   onTap: () {
                     logout().then((value) {

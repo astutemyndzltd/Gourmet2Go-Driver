@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:connectivity/connectivity.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ import '../repository/settings_repository.dart' as settingRepo;
 import '../repository/user_repository.dart' as userRepo;
 
 class SplashScreenController extends ControllerMVC with ChangeNotifier {
+
   ValueNotifier<Map<String, double>> progress = new ValueNotifier(new Map());
   GlobalKey<ScaffoldState> scaffoldKey;
   final FirebaseMessaging firebaseMessaging = FirebaseMessaging();
@@ -25,6 +27,7 @@ class SplashScreenController extends ControllerMVC with ChangeNotifier {
   @override
   void initState() {
     super.initState();
+    settingRepo.connectivity.onConnectivityChanged.listen(checkConnectivity);
     firebaseMessaging.requestNotificationPermissions(const IosNotificationSettings(sound: true, badge: true, alert: true));
     configureFirebase(firebaseMessaging);
     settingRepo.setting.addListener(() {
@@ -46,6 +49,21 @@ class SplashScreenController extends ControllerMVC with ChangeNotifier {
     });
   }
 
+  void checkConnectivity(ConnectivityResult result) {
+
+    switch(result) {
+      case ConnectivityResult.none:
+        Fluttertoast.showToast(
+          msg: 'Verify Internet Connection',
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.TOP,
+          timeInSecForIosWeb: 6,
+        );
+        break;
+    }
+
+  }
+
   void configureFirebase(FirebaseMessaging _firebaseMessaging) {
     try {
       _firebaseMessaging.configure(
@@ -60,6 +78,7 @@ class SplashScreenController extends ControllerMVC with ChangeNotifier {
   }
 
   Future notificationOnResume(Map<String, dynamic> message) async {
+    settingRepo.firebaseMessagingStreams.onResumeStreamController.add(message);
     print(CustomTrace(StackTrace.current, message: message['data']['id']));
     try {
       if (message['data']['id'] == "orders") {
@@ -71,6 +90,7 @@ class SplashScreenController extends ControllerMVC with ChangeNotifier {
   }
 
   Future notificationOnLaunch(Map<String, dynamic> message) async {
+    settingRepo.firebaseMessagingStreams.onLaunchStreamController.add(message);
     String messageId = await settingRepo.getMessageId();
     try {
       if (messageId != message['google.message_id']) {
@@ -85,6 +105,7 @@ class SplashScreenController extends ControllerMVC with ChangeNotifier {
   }
 
   Future notificationOnMessage(Map<String, dynamic> message) async {
+    settingRepo.firebaseMessagingStreams.onMessageStreamController.add(message);
     Fluttertoast.showToast(
       msg: message['notification']['title'],
       toastLength: Toast.LENGTH_LONG,
@@ -92,4 +113,6 @@ class SplashScreenController extends ControllerMVC with ChangeNotifier {
       timeInSecForIosWeb: 5,
     );
   }
+
+
 }

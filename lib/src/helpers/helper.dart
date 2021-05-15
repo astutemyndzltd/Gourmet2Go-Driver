@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:global_configuration/global_configuration.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:html/dom.dart' as dom;
@@ -20,6 +21,8 @@ import '../repository/settings_repository.dart';
 
 class Helper {
   BuildContext context;
+  DateTime currentBackPressTime;
+
   Helper.of(BuildContext _context) {
     this.context = _context;
   }
@@ -86,6 +89,17 @@ class Helper {
         position: LatLng(res['latitude'], res['longitude']));
 
     return marker;
+  }
+
+  Future<bool> onWillPop() {
+    DateTime now = DateTime.now();
+    if (currentBackPressTime == null || now.difference(currentBackPressTime) > Duration(seconds: 2)) {
+      currentBackPressTime = now;
+      Fluttertoast.showToast(msg: 'Tap again to leave');
+      return Future.value(false);
+    }
+    SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+    return Future.value(true);
   }
 
   static Future<Marker> getMyPositionMarker(double latitude, double longitude) async {
